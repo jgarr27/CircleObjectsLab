@@ -1,40 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CircleObjectsLab
+namespace Circle
 {
-    public class Circle
+    public class CircleObj//Renamed class so c# can tell difference
     {
-        //Properties
+        //properties
         public double Radius { get; set; }
-        public double Pi = Math.PI;
-        
-        
-
-        //Constructor
-        public Circle(double _radius, double _area, double Pi)
+        //constructor
+        public CircleObj(double _radius)
         {
             Radius = _radius;
-            
         }
-        
-        
-            
-        
+
         //methods
-        public double CalculateArea(decimal pi, double _radius)
-        {
-            return Math.PI * _radius * _radius;
-        }
-    
         public double CalculateCircumference()
         {
             return 2 * Math.PI * Radius;
         }
-        
+
+        public string CalculateFormattedCircumference()
+        {
+            return FormatNumber(CalculateCircumference());
+        }
+
+        public double CalculateArea()
+        {
+            return Math.PI * Math.Pow(Radius, 2);
+        }
+
+        public string CalculateFormattedArea()
+        {
+            return FormatNumber(CalculateArea());
+        }
+
+        private string FormatNumber(double x)
+        {
+            return Math.Round(x, 2).ToString();
+        }
+
     }
 }
+

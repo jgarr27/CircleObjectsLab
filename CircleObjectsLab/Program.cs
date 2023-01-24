@@ -1,21 +1,36 @@
-﻿
-using CircleObjectsLab;
+﻿using Circle;
 
+Console.WriteLine("Welcome to the Circle Calculator.");
 
+//Counter
+//int circles = 0;
+List<CircleObj> allCircles = new List<CircleObj>();
 
-
-
-Console.WriteLine("Please enter a radius");
-int radius = int.Parse(Console.ReadLine());
-
-if (radius < 0)
+//program loop
+bool runProgram = true;
+while (runProgram)
 {
-    Console.WriteLine("Input is invalid");
+    //getting user input
+    //Console.WriteLine("Please enter a number.");
+    double input = Validator.GetNumberInRangeDouble(0);
+
+    //Create circle object
+    CircleObj myCircle = new CircleObj(input);
+    //circles++;
+    allCircles.Add(myCircle);
+
+    Console.WriteLine($"Circumference: {myCircle.CalculateFormattedCircumference()}");
+    Console.WriteLine($"Area: {myCircle.CalculateFormattedArea()}");
+
+    //ask for continue
+    runProgram = Validator.GetContinue("Would you like to make more circles?", "Yes", "No");
+
 }
-else
+
+//Console.WriteLine($"You created {circles} circles.");
+Console.WriteLine($"You created {allCircles.Count} circles.");
+
+foreach (CircleObj c in allCircles)
 {
-    Console.WriteLine();
+    Console.WriteLine($"Radius: {c.Radius} Area: {c.CalculateFormattedArea()} Circumference {c.CalculateFormattedCircumference()}");
 }
-
-
-
